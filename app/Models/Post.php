@@ -11,8 +11,15 @@ class Post extends Model
 
     protected $guarded = [];
 
-    public function getRouteKeyName() 
+    protected $with = ['category', 'author'];
+
+    public function category()
     {
-        return 'slug';
+        return $this->belongsTo(Category::class);
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
